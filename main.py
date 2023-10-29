@@ -6,8 +6,8 @@ import pandas as pd
 import subprocess
 
 app = FastAPI()
-subprocess.call(["python", "dolar.py"])
 app.mount("/static", StaticFiles(directory="static"), name="static")
+# subprocess.call(["python", "dolar.py"])
 
 html = f"""
 <!DOCTYPE html>
@@ -49,7 +49,7 @@ async def root():
 
 @app.get('/get_tipo_cambio/{tipo}')
 def obrtener_tipo_cambio_oficial_blue(tipo: str):
-    print('tipoCam')
+    
     if tipo == 'oficial':
         dolar_oficial_compra = df_dolar_oficial['compra'].iloc[0]
         dolar_oficial_venta = df_dolar_oficial['venta'].iloc[0]
