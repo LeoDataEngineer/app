@@ -64,10 +64,14 @@ def obrtener_tipo_cambio_oficial_blue(tipo: str):
         return { 'compra': dolar_oficial_compra , 'venta': dolar_oficial_venta, 'Ultima fecha de actualizacion': dolar_oficial_fecha}
 
     elif tipo == 'blue':
-        dolar_blue_compra = df_dolar_blue['compra'].iloc[-1]
-        dolar_blue_venta = df_dolar_blue['venta'].iloc[-1]
-        dolar_blue_fecha = df_dolar_blue['fechaActualizacion'].iloc[-1]
+        dolar_blue_compra = df_dolar_blue['compra'].iloc[0]
+        dolar_blue_venta = df_dolar_blue['venta'].iloc[0]
+        dolar_blue_fecha = df_dolar_blue['fechaActualizacion'].iloc[0]
         return { 'compra': dolar_blue_compra , 'venta': dolar_blue_venta, 'Ultima fecha de actualizacion': dolar_blue_fecha}
+        # dolar_blue_compra = df_dolar_blue['compra'].iloc[-1]
+        # dolar_blue_venta = df_dolar_blue['venta'].iloc[-1]
+        # dolar_blue_fecha = df_dolar_blue['fechaActualizacion'].iloc[-1]
+        # return { 'compra': dolar_blue_compra , 'venta': dolar_blue_venta, 'Ultima fecha de actualizacion': dolar_blue_fecha}
 
         # return f'El dólar {tipo} es para la Compra: {dolar_blue_compra} y para la Venta: {dolar_blue_venta}. Ultima fecha de actaulizacion: {dolar_blue_fecha}'
 
