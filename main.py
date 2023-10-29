@@ -41,14 +41,14 @@ async def root():
     return HTMLResponse(html)
 
 @app.get('/get_tipo_cambio/{tipo}')
-def obrtener_tipo_cambio_oficial_blue():
+def obrtener_tipo_cambio_oficial_blue(tipo: str):
     
-    # if tipo == 'oficial':
-    #     dolar_oficial_compra = df_dolar_oficial['compra'].iloc[0]
-    #     dolar_oficial_venta = df_dolar_oficial['venta'].iloc[0]
-    #     dolar_oficial_fecha = df_dolar_oficial['fechaActualizacion'].iloc[0]
-    #     return { 'compra': dolar_oficial_compra , 'venta': dolar_oficial_venta, 'Ultima fecha de actualizacion': dolar_oficial_fecha}
-    # elif tipo == 'blue':
+    if tipo == 'oficial':
+        dolar_oficial_compra = df_dolar_oficial['compra'].iloc[0]
+        dolar_oficial_venta = df_dolar_oficial['venta'].iloc[0]
+        dolar_oficial_fecha = df_dolar_oficial['fechaActualizacion'].iloc[0]
+        return { 'compra': dolar_oficial_compra , 'venta': dolar_oficial_venta, 'Ultima fecha de actualizacion': dolar_oficial_fecha}
+    elif tipo == 'blue':
         dolar_blue_compra = df_dolar_blue['compra'].iloc[0]
         dolar_blue_venta = df_dolar_blue['venta'].iloc[0]
         dolar_blue_fecha = df_dolar_blue['fechaActualizacion'].iloc[0]
@@ -101,5 +101,5 @@ def obrtener_tipo_cambio_oficial_blue():
 #         return { 'compra': dolar_blue_compra , 'venta': dolar_blue_venta, 'Ultima fecha de actualizacion': dolar_blue_fecha}
 
 
-   
+print(obrtener_tipo_cambio_oficial_blue('oficial'))
 
