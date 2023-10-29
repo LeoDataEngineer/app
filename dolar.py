@@ -56,32 +56,32 @@ ingesta_full_2(base_url, endpoint_dolar_oficial, folder_path, file_prefix)
 
 
 
-def ingesta_incremental(base_url, endpoint, folder_path, file_prefix):
-    dataframe =get_data(base_url, endpoint, params=None)
+# def ingesta_incremental(base_url, endpoint, folder_path, file_prefix):
+#     dataframe =get_data(base_url, endpoint, params=None)
     
-    file_name = f"{file_prefix}.csv"
-    file_path = os.path.join(folder_path, file_name)
+#     file_name = f"{file_prefix}.csv"
+#     file_path = os.path.join(folder_path, file_name)
 
-    if os.path.exists(file_path):
-        # Si el archivo ya existe, carga el archivo CSV existente en un DataFrame
-        existing_dataframe = pd.read_csv(file_path)
+#     if os.path.exists(file_path):
+#         # Si el archivo ya existe, carga el archivo CSV existente en un DataFrame
+#         existing_dataframe = pd.read_csv(file_path)
 
-        # Compara la columna 'fechaActualizacion' para encontrar filas actualizadas
-        updated_rows = dataframe[~dataframe['fechaActualizacion'].isin(existing_dataframe['fechaActualizacion'])]
+#         # Compara la columna 'fechaActualizacion' para encontrar filas actualizadas
+#         updated_rows = dataframe[~dataframe['fechaActualizacion'].isin(existing_dataframe['fechaActualizacion'])]
 
-        if not updated_rows.empty:
-            # Agrega las filas actualizadas al DataFrame existente
-            existing_dataframe = pd.concat([existing_dataframe, updated_rows])
+#         if not updated_rows.empty:
+#             # Agrega las filas actualizadas al DataFrame existente
+#             existing_dataframe = pd.concat([existing_dataframe, updated_rows])
 
-            # Guarda el DataFrame combinado en el archivo CSV
-            existing_dataframe.to_csv(file_path, index=False)
-    else:
-        # Si el archivo no existe, simplemente guarda el DataFrame en un nuevo archivo
-        dataframe.to_csv(file_path, index=False)
+#             # Guarda el DataFrame combinado en el archivo CSV
+#             existing_dataframe.to_csv(file_path, index=False)
+#     else:
+#         # Si el archivo no existe, simplemente guarda el DataFrame en un nuevo archivo
+#         dataframe.to_csv(file_path, index=False)
 
 
         
 folder_path = "datasets/dolar_blue"  # Ruta de la carpeta donde deseas guardar el archivo CSV
 file_prefix = 'dolar_blue'  # Prefijo para el nombre del archivo
 endpoint_dolar_blue = "/v1/dolares/blue" # endpoint
-ingesta_incremental(base_url, endpoint_dolar_blue, folder_path, file_prefix)  
+ingesta_full_2(base_url, endpoint_dolar_blue, folder_path, file_prefix)  
