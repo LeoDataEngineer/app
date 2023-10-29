@@ -91,4 +91,4 @@ def obrtener_tipo_cambio_oficial_blue():
 
         
 
-print(obrtener_tipo_cambio_oficial_blue('blue'))
+print(obrtener_tipo_cambio_oficial_blue())
