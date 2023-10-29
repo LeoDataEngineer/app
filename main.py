@@ -28,12 +28,13 @@ html = f"""
     </body>
 </html>
 """
-
-@app.on_event('startup')
-def startup():
-    global df_dolar_blue, df_dolar_oficial
-    df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
-    df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
+df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
+df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
+# @app.on_event('startup')
+# def startup():
+#     global df_dolar_blue, df_dolar_oficial
+#     df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
+#     df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
     
 @app.get("/")
 async def root():
@@ -69,3 +70,6 @@ def obrtener_tipo_cambio_oficial_blue(tipo: str):
         return { 'compra': dolar_blue_compra , 'venta': dolar_blue_venta, 'Ultima fecha de actualizacion': dolar_blue_fecha}
 
         # return f'El dólar {tipo} es para la Compra: {dolar_blue_compra} y para la Venta: {dolar_blue_venta}. Ultima fecha de actaulizacion: {dolar_blue_fecha}'
+
+
+print(obrtener_tipo_cambio_oficial_blue('blue'))
