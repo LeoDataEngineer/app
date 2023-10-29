@@ -7,7 +7,7 @@ import subprocess
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
-# subprocess.call(["python", "dolar.py"])
+subprocess.call(["python", "dolar.py"])
 
 html = f"""
 <!DOCTYPE html>
@@ -29,6 +29,12 @@ html = f"""
 </html>
 """
 
+@app.on_event('startup')
+def startup():
+    global df_dolar_blue, df_dolar_oficial
+    df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
+    df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
+    
 @app.get("/")
 async def root():
     return HTMLResponse(html)
@@ -49,17 +55,16 @@ async def hello():
 
 @app.get('/get_tipo_cambio/{tipo}')
 def obrtener_tipo_cambio_oficial_blue(tipo: str):
-    return {'compra': 'blue', 'venta':'oficial', "time": time()}
+    
+    if tipo == 'oficial':
+        dolar_oficial_compra = df_dolar_oficial['compra'].iloc[0]
+        dolar_oficial_venta = df_dolar_oficial['venta'].iloc[0]
+        dolar_oficial_fecha = df_dolar_oficial['fechaActualizacion'].iloc[0]
+        return f'El dólar {tipo} es para compra: {dolar_oficial_compra}  Venta: {dolar_oficial_venta}. Ultima fecha de actualizacion: {dolar_oficial_fecha}'
 
-    # if tipo == 'oficial':
-    #     dolar_oficial_compra = df_dolar_oficial['compra'].iloc[0]
-    #     dolar_oficial_venta = df_dolar_oficial['venta'].iloc[0]
-    #     dolar_oficial_fecha = df_dolar_oficial['fechaActualizacion'].iloc[0]
-    #     return f'El dólar {tipo} es para compra: {dolar_oficial_compra}  Venta: {dolar_oficial_venta}. Ultima fecha de actualizacion: {dolar_oficial_fecha}'
-
-    # elif tipo == 'blue':
-    #     dolar_blue_compra = df_dolar_blue['compra'].iloc[-1]
-    #     dolar_blue_venta = df_dolar_blue['venta'].iloc[-1]
-    #     dolar_blue_fecha = df_dolar_blue['fechaActualizacion'].iloc[-1]
+    elif tipo == 'blue':
+        dolar_blue_compra = df_dolar_blue['compra'].iloc[-1]
+        dolar_blue_venta = df_dolar_blue['venta'].iloc[-1]
+        dolar_blue_fecha = df_dolar_blue['fechaActualizacion'].iloc[-1]
         
-    #     return f'El dólar {tipo} es para la Compra: {dolar_blue_compra} y para la Venta: {dolar_blue_venta}. Ultima fecha de actaulizacion: {dolar_blue_fecha}'
+        return f'El dólar {tipo} es para la Compra: {dolar_blue_compra} y para la Venta: {dolar_blue_venta}. Ultima fecha de actaulizacion: {dolar_blue_fecha}'
