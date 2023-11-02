@@ -30,8 +30,8 @@ html = f"""
 """
 df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
 df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
-print(df_dolar_blue)
-print("_____")
+# print(df_dolar_blue)
+# print("_____")
 # @app.on_event('startup')
 # def startup():
 #     global df_dolar_blue, df_dolar_oficial
@@ -62,5 +62,5 @@ def obrtener_tipo_cambio_oficial_blue(tipo: str):
 
 
 
-#print(obrtener_tipo_cambio_oficial_blue('oficial'))
+# print(obrtener_tipo_cambio_oficial_blue('blue'))
 

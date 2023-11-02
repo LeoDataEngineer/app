@@ -81,7 +81,7 @@ ingesta_full_2(base_url, endpoint_dolar_oficial, folder_path, file_prefix)
 
 
         
-folder_path = "datasets/dolar_blue"  # Ruta de la carpeta donde deseas guardar el archivo CSV
-file_prefix = 'dolar_blue'  # Prefijo para el nombre del archivo
+folder_path_blue = "datasets/dolar_blue"  # Ruta de la carpeta donde deseas guardar el archivo CSV
+file_prefix_blue = 'dolar_blue'  # Prefijo para el nombre del archivo
 endpoint_dolar_blue = "/v1/dolares/blue" # endpoint
-ingesta_full_2(base_url, endpoint_dolar_blue, folder_path, file_prefix)  
+ingesta_full_2(base_url, endpoint_dolar_blue, folder_path_blue, file_prefix_blue)  
