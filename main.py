@@ -31,6 +31,8 @@ html = f"""
 df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
 df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
 
+
+
 # print(df_dolar_blue)
 # print("_____")
 # @app.on_event('startup')

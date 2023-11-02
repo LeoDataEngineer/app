@@ -39,6 +39,9 @@ os.makedirs(dolar_oficial, exist_ok=True)
 def ingesta_full_2(base_url, endpoint, folder_path, file_prefix):
     dataframe =get_data(base_url, endpoint, params=None)
     
+    dataframe['compra'] = dataframe['compra'].astype(float)
+    dataframe['venta'] = dataframe['venta'].astype(float)
+    
     if isinstance(dataframe, pd.DataFrame) and not dataframe.empty:
         file_name = f"{file_prefix}.csv"
         file_path = os.path.join(folder_path, file_name)
