@@ -7,7 +7,7 @@ import subprocess
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
-subprocess.call(["python", "dolar.py"])
+# subprocess.call(["python", "dolar.py"])
 
 html = f"""
 <!DOCTYPE html>
@@ -62,5 +62,5 @@ def obrtener_tipo_cambio_oficial_blue(tipo: str):
 
 
 
-# print(obrtener_tipo_cambio_oficial_blue('blue'))
+print(obrtener_tipo_cambio_oficial_blue('oficial'))
 
