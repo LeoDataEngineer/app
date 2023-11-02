@@ -28,8 +28,10 @@ html = f"""
     </body>
 </html>
 """
-df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
+# df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
 df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
+df_dolar_blue_crudo = "https://raw.githubusercontent.com/LeoDataEngineer/app/main/datasets/dolar_blue/dolar_blue.csv"
+df_dolar_blue= pd.read_csv(df_dolar_blue_crudo)
 # print(df_dolar_blue)
 # print("_____")
 # @app.on_event('startup')
@@ -44,9 +46,7 @@ async def root():
 
 @app.get('/get_tipo_cambio/{tipo}')
 def obrtener_tipo_cambio_oficial_blue(tipo: str):
-    df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
-    df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
-    
+       
     if tipo == 'oficial':
         dolar_oficial_compra = df_dolar_oficial['compra'].iloc[0]
         dolar_oficial_venta = df_dolar_oficial['venta'].iloc[0]
@@ -62,5 +62,5 @@ def obrtener_tipo_cambio_oficial_blue(tipo: str):
 
 
 
-print(obrtener_tipo_cambio_oficial_blue('oficial'))
+# print(obrtener_tipo_cambio_oficial_blue('blue'))
 
