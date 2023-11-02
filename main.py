@@ -1,5 +1,5 @@
 from time import time
-from fastapi import FastAPI, __version__
+from fastapi import FastAPI, HTTPException, __version__
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 import pandas as pd
@@ -30,6 +30,8 @@ html = f"""
 """
 df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
 df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
+print(df_dolar_blue)
+print("_____")
 # @app.on_event('startup')
 # def startup():
 #     global df_dolar_blue, df_dolar_oficial
@@ -42,19 +44,23 @@ async def root():
 
 @app.get('/get_tipo_cambio/{tipo}')
 def obrtener_tipo_cambio_oficial_blue(tipo: str):
+    df_dolar_blue = pd.read_csv("datasets/dolar_blue/dolar_blue.csv")
+    df_dolar_oficial = pd.read_csv("datasets/dolar_oficial/dolar_oficial.csv")
     
     if tipo == 'oficial':
         dolar_oficial_compra = df_dolar_oficial['compra'].iloc[0]
         dolar_oficial_venta = df_dolar_oficial['venta'].iloc[0]
         dolar_oficial_fecha = df_dolar_oficial['fechaActualizacion'].iloc[0]
         return { 'compra': dolar_oficial_compra , 'venta': dolar_oficial_venta, 'Ultima fecha de actualizacion': dolar_oficial_fecha}
-    if tipo == 'blue':
+    elif tipo == 'blue':
         dolar_blue_compra = df_dolar_blue['compra'].iloc[0]
         dolar_blue_venta = df_dolar_blue['venta'].iloc[0]
         dolar_blue_fecha = df_dolar_blue['fechaActualizacion'].iloc[0]
         return { 'compra': dolar_blue_compra , 'venta': dolar_blue_venta, 'Ultima fecha de actualizacion': dolar_blue_fecha}
+    else:
+        raise HTTPException(status_code=404, detail='Tipo de cambio no encontrado')
 
 
 
-print(obrtener_tipo_cambio_oficial_blue('blue'))
+#print(obrtener_tipo_cambio_oficial_blue('oficial'))
 
