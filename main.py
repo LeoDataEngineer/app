@@ -7,7 +7,7 @@ import subprocess
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
-# subprocess.call(["python", "dolar.py"])
+subprocess.call(["python", "dolar.py"])
 
 html = f"""
 <!DOCTYPE html>
