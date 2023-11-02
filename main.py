@@ -61,14 +61,7 @@ def obrtener_tipo_cambio_oficial_blue(tipo: str):
 
 
 
-print(obrtener_tipo_cambio_oficial_blue('blue'))
+# print(obrtener_tipo_cambio_oficial_blue('blue'))
 
-@app.get('/get_tipo_cambio_blue')
-def obrtener_tipo_cambio_oficial_blue():
-       
-        dolar_blue_compra = df_dolar_blue['compra'].iloc[0]
-        dolar_blue_venta = df_dolar_blue['venta'].iloc[0]
-        dolar_blue_fecha = df_dolar_blue['fechaActualizacion'].iloc[0]
-        return { 'compra': dolar_blue_compra , 'venta': dolar_blue_venta, 'Ultima fecha de actualizacion': dolar_blue_fecha}
-    
+
 
