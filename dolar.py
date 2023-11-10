@@ -88,3 +88,4 @@ folder_path = "datasets/dolar_blue"  # Ruta de la carpeta donde deseas guardar e
 file_prefix= 'dolar_blue'  # Prefijo para el nombre del archivo
 endpoint_dolar_blue = "/v1/dolares/blue" # endpoint
 ingesta_full_2(base_url, endpoint_dolar_blue, folder_path, file_prefix)  
+print(ingesta_full_2(base_url, endpoint_dolar_blue, folder_path, file_prefix)  )
